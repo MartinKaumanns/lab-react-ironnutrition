@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 /* import Foods from './foods.json'; */
 
 const Search = (props) => {
-  const { foods, setFoods, filteredFoods, setFilteredFoods } = props;
+  const { foods, setFilteredFoods } = props;
 
   const [search, setSearch] = useState('');
 

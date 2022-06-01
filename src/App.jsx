@@ -28,20 +28,15 @@ function App() {
   };
 
   const addNewFood = (newFood) => {
-    const updatedFoods = [...foods, newFood];
-    /*  setFilteredFoods(updatedFoods); */
+    const updatedFoods = [newFood, ...foods];
     setFoods(updatedFoods);
+    setFilteredFoods(updatedFoods);
   };
   return (
     <div>
       <h1 className="App-header">Iron Nutrition</h1>
       <AddFood addFood={addNewFood} />
-      <Search
-        foods={foods}
-        setFoods={setFoods}
-        filteredFoods={filteredFoods}
-        setFilteredFoods={setFilteredFoods}
-      />
+      <Search foods={foods} setFilteredFoods={setFilteredFoods} />
 
       <div className="columns">
         <div className="column">
