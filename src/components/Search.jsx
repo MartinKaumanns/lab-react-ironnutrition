@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 /* import Foods from './foods.json'; */
 
 const Search = (props) => {
-  const { foods, setFoods } = props;
+  const { foods, setFoods, filteredFoods, setFilteredFoods } = props;
+
   const [search, setSearch] = useState('');
 
   const handleSearch = (searchTerm) => {
-    const filteredFood = foods.filter((food) => {
-      return food.name.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-    setFoods(filteredFood);
     setSearch(searchTerm);
+    const filteredFood = foods.filter((food) =>
+      food.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredFoods(filteredFood);
   };
 
   return (

@@ -5,12 +5,8 @@ const AddFood = (props) => {
   const [calories, setCalories] = useState('');
   const [image, setImage] = useState('');
 
-  const handleNameInput = (e) => setName(e.target.value);
-  const handleCaloriesInput = (e) => setCalories(e.target.value);
-  const handleImageInput = (e) => setImage(e.target.src);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const newFood = { name, calories, image };
     console.log('Added: ', newFood);
     props.addFood(newFood);
@@ -36,24 +32,26 @@ const AddFood = (props) => {
                 type="text"
                 name="name"
                 value={name}
-                onChange={handleNameInput}
+                onChange={(event) => setName(event.target.value)}
               />
               <label>Calories: </label>
               <input
                 type="text"
                 name="calories"
                 value={calories}
-                onChange={handleCaloriesInput}
+                onChange={(event) => setCalories(event.target.value)}
               />
               <label>Image: </label>
               <input
-                type="file"
+                type="text"
+                className="input"
+                placeholder="enter image URL"
+                value={image}
                 alt={name}
-                src={image}
-                onClick={handleImageInput}
+                onClick={(event) => setImage(event.target.value)}
               />
 
-              <button type="submit">Add food</button>
+              <button>Add food</button>
             </form>
           </div>
         </div>

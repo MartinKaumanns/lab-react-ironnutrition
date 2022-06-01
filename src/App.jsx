@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import './App.css';
 import 'bulma/css/bulma.css';
+import './App.css';
+import Foods from './foods.json';
 import FoodBox from './components/FoodBox';
 import TodaysFood from './components/TodaysFood';
 import AddFood from './components/AddFood';
 import Search from './components/Search';
-import Foods from './foods.json';
 
 function App() {
-  const [todaysItems, setTodaysItems] = useState([]);
   const [foods, setFoods] = useState(Foods);
+  const [filteredFoods, setFilteredFoods] = useState(foods);
+  const [todaysItems, setTodaysItems] = useState([]);
 
   const onAdd = (food) => {
     const exist = todaysItems.find((x) => x.name === food.name);
@@ -28,23 +29,23 @@ function App() {
 
   const addNewFood = (newFood) => {
     const updatedFoods = [...foods, newFood];
+    /*  setFilteredFoods(updatedFoods); */
     setFoods(updatedFoods);
   };
-
-  /*  const onAdd = (event) => {
-    event.preventDefault();
-    console.log(event);
-  }; */
-
   return (
     <div>
       <h1 className="App-header">Iron Nutrition</h1>
       <AddFood addFood={addNewFood} />
-      <Search foods={foods} setFoods={setFoods} />
+      <Search
+        foods={foods}
+        setFoods={setFoods}
+        filteredFoods={filteredFoods}
+        setFilteredFoods={setFilteredFoods}
+      />
 
       <div className="columns">
         <div className="column">
-          <FoodBox onAdd={onAdd} foods={foods} />
+          <FoodBox onAdd={onAdd} foods={filteredFoods} />
         </div>
         <div className="column">
           <TodaysFood onAdd={onAdd} todaysItems={todaysItems} />
